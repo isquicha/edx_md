@@ -38,4 +38,4 @@ Open to suggestions!
 Open to reviews!
 
 [1]: https://edx.readthedocs.io/projects/edx-open-learning-xml/en/latest/problem-xml/multiple_choice.html#example-multiple-choice-problem
-[2]: edxmd.andrevicente.dev.br
+[2]: https://edxmd.andrevicente.dev.br
