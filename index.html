@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edX Markdown Creator</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Source Code Pro', monospace !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container" class="mx-5 center">
+        <h1 class="hy-2">Criador de Markdown</h1>
+        <form id="multiple-choice-form">
+            <label for="enunciado">Enunciado</label><br>
+            <textarea name="enunciado" id="enunciado" cols="60"
+                rows="7"></textarea>
+            <hr>
+
+            <input type="checkbox" name="check" id="check1">
+            <label for="alternativa">Letra A</label><br>
+            <textarea name="alternativa" id="alternativa1" cols="60" rows="3"
+                placeholder="Enunciado da alternativa"></textarea><br>
+            <textarea name="explica" id="explica1" cols="60" rows="3"
+                placeholder="Explicação da resposta"></textarea><br><br>
+
+            <input type="checkbox" name="check" id="check2">
+            <label for="alternativa">Letra B</label><br>
+            <textarea name="alternativa" id="alternativa2" cols="60" rows="3"
+                placeholder="Enunciado da alternativa"></textarea><br>
+            <textarea name="explica" id="explica2" cols="60" rows="3"
+                placeholder="Explicação da resposta"></textarea><br><br>
+
+            <input type="checkbox" name="check" id="check3">
+            <label for="alternativa">Letra C</label><br>
+            <textarea name="alternativa" id="alternativa3" cols="60" rows="3"
+                placeholder="Enunciado da alternativa"></textarea><br>
+            <textarea name="explica" id="explica3" cols="60" rows="3"
+                placeholder="Explicação da resposta"></textarea><br><br>
+
+            <input type="checkbox" name="check" id="check4">
+            <label for="alternativa">Letra D</label><br>
+            <textarea name="alternativa" id="alternativa4" cols="60" rows="3"
+                placeholder="Enunciado da alternativa"></textarea><br>
+            <textarea name="explica" id="explica4" cols="60" rows="3"
+                placeholder="Explicação da resposta"></textarea><br><br>
+
+            <input type="checkbox" name="check" id="check5">
+            <label for="alternativa">Letra E</label><br>
+            <textarea name="alternativa" id="alternativa5" cols="60" rows="3"
+                placeholder="Enunciado da alternativa"></textarea><br>
+            <textarea name="explica" id="explica5" cols="60" rows="3"
+                placeholder="Explicação da resposta"></textarea><br><br>
+
+            <input class="btn btn-primary my-3" type="submit" value="Criar">
+        </form>
+        <textarea class="mb-3" name="result" id="result" cols="60" rows="12"
+            readonly disabled></textarea>
+    </div>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous">
+    <script>
+        const multipleChoiceForm = document.querySelector("#multiple-choice-form");
+        const enunciado = document.querySelector("#enunciado");
+        const checks = document.getElementsByName("check");
+        const alternativas = document.getElementsByName("alternativa");
+        const explainers = document.getElementsByName("explica");
+        const result = document.querySelector("#result");
+
+        const createResult = () => {
+            let resultString = `>>${enunciado.value}<<`;
+            for (let i = 0; i < checks.length; i++) {
+                const checked = checks[i].checked === true ? "X" : " ";
+                const alternativa = alternativas[i].value;
+                const explaining = explainers[i].value;
+                console.group(i);
+                console.log(checked);
+                console.log(alternativa);
+                console.log(explaining);
+                console.groupEnd(i);
+                resultString += `\n(${checked})${alternativa}`;
+                resultString += explaining !== "" ? `{{${explaining}}}` : "";
+            }
+            return resultString;
+        }
+        multipleChoiceForm.addEventListener("submit", event => {
+            event.preventDefault();
+            result.value = createResult();
+        })
+    </script>
+</body>
+
+</html>
